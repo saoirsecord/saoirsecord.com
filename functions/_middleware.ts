@@ -11,7 +11,7 @@ const routes: Route[] = [
 ]
 
 export const onRequestOptions: PagesFunction[] = [
-  () => return new Response("OK", { "status": 200 })
+  () => { return new Response(null, { "status": 200 }) }
 ]
 
 export const onRequest: PagesFunction[] = [
