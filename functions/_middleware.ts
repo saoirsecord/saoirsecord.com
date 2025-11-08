@@ -11,7 +11,24 @@ const routes: Route[] = [
 ]
 
 export const onRequestOptions: PagesFunction[] = [
-  () => { return new Response(null, { "status": 200 }) }
+  (context) => {
+    let url = new URL(context.request.url);
+    if (url.pathname == '/api/v1/accounts/lookup') {
+      return new Response(null, { 
+        "status": 200,
+        "headers": {
+          "Access-Control-Allow-Origin": "https://justmytoots.com",
+          "Access-Control-Allow-Headers": "content-type"
+        }
+      }) 
+    } else {
+      try {
+        return await context.next();
+      } catch (err) {
+        return new Response(`${err.message}\n${err.stack}`, { status: 500 });
+      }
+    }
+  }
 ]
 
 export const onRequest: PagesFunction[] = [
