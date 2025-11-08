@@ -1,3 +1,10 @@
 include: [".well-known"]
+exclude: [
+  "node_modules/",
+  "package.json",
+  "pnpm-lock.yaml",
+  "CNAME",
+  "README.md"
+]
 plugins:
   - jekyll-redirect-from
