@@ -1,15 +1,3 @@
-import proxyflare from "@flaregun-net/proxyflare-for-pages"
-
-const routes: Route[] = [
-  {
-    from: {
-      pattern: "saoirsecord.com/api/v1/accounts/lookup",
-      alsoMatchWWWSubdomain: true,
-    },
-    to: { url: "https://mastodon.social/api/v1/accounts/lookup" },
-  }
-]
-
 export const onRequestOptions: PagesFunction[] = [
   async (context) => {
     let url = new URL(context.request.url);
@@ -18,7 +6,8 @@ export const onRequestOptions: PagesFunction[] = [
         "status": 200,
         "headers": {
           "Access-Control-Allow-Origin": "https://justmytoots.com",
-          "Access-Control-Allow-Headers": "content-type"
+          "Access-Control-Allow-Headers": "content-type",
+          "Access-Control-Allow-Methods": "GET, OPTIONS"
         }
       }) 
     } else {
@@ -29,14 +18,4 @@ export const onRequestOptions: PagesFunction[] = [
       }
     }
   }
-]
-
-export const onRequest: PagesFunction[] = [
-  (context) =>
-    proxyflare({
-      config: {
-        global: { debug: true },
-        routes,
-      },
-    })(context)
 ]
