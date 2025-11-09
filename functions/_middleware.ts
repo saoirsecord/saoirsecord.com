@@ -31,7 +31,7 @@ export const onRequestGet: PagesFunction [] = [
             "Content-Type": "application/json;charset=utf-8"
           }
         })
-        .then((response) => res.json())
+        .then((response) => response.json())
         .then((data) => {
           var body = data;
           if (body && body['note']) body['note'] = body['note'] + ' https://justmytoots.com/@saoirsecord@saoirsecord.com'
