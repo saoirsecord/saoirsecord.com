@@ -4,7 +4,8 @@ exclude: [
   "package.json",
   "pnpm-lock.yaml",
   "CNAME",
-  "README.md"
+  "README.md",
+  "functions/"
 ]
 plugins:
   - jekyll-redirect-from
