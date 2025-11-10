@@ -31,7 +31,7 @@ export const onRequestGet: PagesFunction [] = [
           "display_name": "saoirse dream Discord",
           "url": "https://web.brid.gy/saoirsecord.com",
           "note": "https://justmytoots.com/@saoirsecord@saoirsecord.com",
-          "avatar": "https://saoirsecord.com/regular.png",
+          "avatar": "https://saoirsecord.com/logo/regular.png",
           "fields": []
         }), { status: 200 });
       } else {
