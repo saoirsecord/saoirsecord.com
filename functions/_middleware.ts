@@ -29,14 +29,15 @@ export const onRequestGet: PagesFunction [] = [
         await fetch('https://mastodon.social/api/v1/accounts/lookup')
         .then((response) => response.json())
         .then((data) => {
-          var body = data;
-          if (body && body['note']) body['note'] = body['note'] + ' https://justmytoots.com/@saoirsecord@saoirsecord.com'
-
-          return new Response(JSON.stringify(body), { "status": 200 });
+          let body = data;
+          if (body && body['note']) {
+            body['note'] = body['note'] + ' https://justmytoots.com/@saoirsecord@saoirsecord.com'
+          }
+          return new Response(JSON.stringify(body), { status: 200 });
         })
       } else {
         try {
-          return await context.next();
+          return new Response(JSON.stringify({"note":"https://justmytoots.com/@saoirsecord@saoirsecord.com"}), { status: 200 });
         } catch (err) {
           return new Response(`${err.message}\n${err.stack}`, { status: 500 });
         }
