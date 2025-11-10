@@ -26,18 +26,10 @@ export const onRequestGet: PagesFunction [] = [
     if (url.pathname == '/api/v1/accounts/lookup') {
       let search = decodeURIComponent(url.search);
       if (search == '?acct=@saoirsecord@saoirsecord.com') {
-        await fetch('https://mastodon.social/api/v1/accounts/lookup')
-        .then((response) => response.json())
-        .then((data) => {
-          let body = data;
-          if (body && body['note']) {
-            body['note'] = body['note'] + ' https://justmytoots.com/@saoirsecord@saoirsecord.com'
-          }
-          return new Response(JSON.stringify(body), { status: 200 });
-        })
+        return new Response(JSON.stringify({"note":"https://justmytoots.com/@saoirsecord@saoirsecord.com"}), { status: 200 });
       } else {
         try {
-          return new Response(JSON.stringify({"note":"https://justmytoots.com/@saoirsecord@saoirsecord.com"}), { status: 200 });
+          return await context.next();
         } catch (err) {
           return new Response(`${err.message}\n${err.stack}`, { status: 500 });
         }
